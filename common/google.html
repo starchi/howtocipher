@@ -1,0 +1,59 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=GB2312" />
+		<title>Wrong</title>
+		<link href="../css/gangnam_style.css" rel="stylesheet" type="text/css" />
+		<link href="./search_style.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body>
+		<div align="center">
+			<p>HowTo敬佩这位竞争对手，他认为对方失败的原因是本地化做得太差，甚至比不上别人5分钟的成果。</p><input type="button" value="点击返回" onclick="history.back()" />
+		</div>
+		<!-- 以下为吐槽，与解密无关。本吐槽采用王集鹄的创意和代码~-->
+		<br/>
+		<br/>
+		<div align="center">
+			Viable Google: <span class="s_ipt_wr"><input type="text" name="wd" id="kw" maxlength="100" class="s_ipt"></span><span class="s_btn_wr"><input type="submit" value="亲,搜一下吧" id="su" class="s_btn" onmousedown="this.className='s_btn s_btn_h'" onmouseout="this.className='s_btn'"></span>
+			<div id="results" style="font-size:18px;"></div>
+		</div>
+		<script>
+				void function(){
+					/**
+					 * @author 王集鹄(wangjihu,http//weibo.com/zswang)
+					 * @version 2012-01-07
+					 */
+					/**
+					 * HTML编码
+					 * @param {String} text 
+					 */
+					function encodeHTML(text){
+						return String(text).replace(/["<>& ]/g, function(all){
+							return "&" + {
+								'"': 'quot',
+								'<': 'lt',
+								'>': 'gt',
+								'&': 'amp',
+								' ': 'nbsp'
+							}[all] + ";";
+						});
+					}
+
+					var go = document.getElementById('su');
+					var kw = document.getElementById('kw');
+					var results = document.getElementById('results');
+					kw.focus();
+					function search(){
+						results.innerHTML = kw.value &&
+							'<a>根据相关法律法规和政策,"' + encodeHTML(kw.value) + '"搜索结果未予显示 （用时 0.0000001 秒）</a>';
+						kw.focus();
+					}
+					
+					go.onclick = search;
+					kw.onkeydown = function(e){
+						e = e || event;
+						if (e.keyCode == 13) search();
+					};
+				}();
+		</script>
+	</body>
+</html>

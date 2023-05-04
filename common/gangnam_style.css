@@ -1,0 +1,24 @@
+/* CSS Document */
+body {
+	background-color: #000000;
+	font-family: "Î¢ÈíÑÅºÚ", Times, serif;
+	font-size: 20px;
+	color: #FFFFFF;
+}
+a:link {
+	color: #FFFFFF;
+}
+a:visited {
+	color: #FFFFFF;
+}
+p{
+	text-align:left;
+	text-indent:2em;
+	line-height:30px;
+	#padding:0 10% 0 10%;
+	width:800px;
+}
+p img{
+	display:block;
+	margin:0 auto 0 auto;
+}
