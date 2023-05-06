@@ -7,23 +7,23 @@
 	</head>
 	<body>
 		<div align="center">
-			<p>HowTo������λ�������֣�����Ϊ�Է�ʧ�ܵ�ԭ���Ǳ��ػ�����̫������Ȳ��ϱ���5���ӵĳɹ���</p><input type="button" value="�������" onclick="history.back()" />
+			<p>HowTo敬佩这位竞争对手，他认为对方失败的原因是本地化做得太差，甚至比不上别人5分钟的成果。</p><input type="button" value="点击返回" onclick="history.back()" />
 		</div>
-		<!-- ����Ϊ�²ۣ�������޹ء����²۲����������Ĵ���ʹ���~-->
+		<!-- 以下为吐槽，与解密无关。本吐槽采用王集鹄的创意和代码~-->
 		<br/>
 		<br/>
 		<div align="center">
-			Viable Google: <span class="s_ipt_wr"><input type="text" name="wd" id="kw" maxlength="100" class="s_ipt"></span><span class="s_btn_wr"><input type="submit" value="��,��һ�°�" id="su" class="s_btn" onmousedown="this.className='s_btn s_btn_h'" onmouseout="this.className='s_btn'"></span>
+			Viable Google: <span class="s_ipt_wr"><input type="text" name="wd" id="kw" maxlength="100" class="s_ipt"></span><span class="s_btn_wr"><input type="submit" value="亲,搜一下吧" id="su" class="s_btn" onmousedown="this.className='s_btn s_btn_h'" onmouseout="this.className='s_btn'"></span>
 			<div id="results" style="font-size:18px;"></div>
 		</div>
 		<script>
 				void function(){
 					/**
-					 * @author ������(wangjihu,http//weibo.com/zswang)
+					 * @author 王集鹄(wangjihu,http//weibo.com/zswang)
 					 * @version 2012-01-07
 					 */
 					/**
-					 * HTML����
+					 * HTML编码
 					 * @param {String} text 
 					 */
 					function encodeHTML(text){
@@ -44,7 +44,7 @@
 					kw.focus();
 					function search(){
 						results.innerHTML = kw.value &&
-							'<a>������ط��ɷ��������,"' + encodeHTML(kw.value) + '"�������δ����ʾ ����ʱ 0.0000001 �룩</a>';
+							'<a>根据相关法律法规和政策,"' + encodeHTML(kw.value) + '"搜索结果未予显示 （用时 0.0000001 秒）</a>';
 						kw.focus();
 					}
 					
