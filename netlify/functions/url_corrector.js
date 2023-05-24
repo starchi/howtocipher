@@ -37,6 +37,15 @@ exports.handler = async (event) => {
   // 获取当前目录下的文件列表
   const files = fs.readdirSync(__dirname);
   
+  if (!Array.isArray(files) || files.length === 0) {
+    // 文件列表为空或未定义
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ message: 'File list is empty or undefined' }),
+    };
+  }
+
+  
   // 寻找编辑距离为1的页面
   let correctedUrl = '';
   for (const file of files) {
