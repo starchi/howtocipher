@@ -35,6 +35,37 @@ exports.handler = async (event) => {
   const files = fs.readdirSync(__dirname);
 
   // 寻找编辑距离为1的页面
+  
+
+  // 返回页面
+  if (correctedUrl !== '') {
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ correctedUrl }),
+    };
+  } else {
+    // 返回 common/wrong.html 页面
+    const wrongPagePath = path.join(__dirname, 'common', 'wrong.html');
+    const wrongPageContent = fs.readFileSync(wrongPagePath, 'utf-8');
+
+    return {
+      statusCode: 200,
+      body: wrongPageContent,
+      headers: {
+        'Content-Type': 'text/html',
+      },
+    };
+  }
+};
+
+
+const path = require('path');
+
+exports.handler = async (event) => {
+  const { queryStringParameters } = event;
+  const { url } = queryStringParameters;
+
+  // 寻找编辑距离为1的页面
   let correctedUrl = '';
   for (const file of files) {
     const filePath = path.join(__dirname, file);
@@ -54,8 +85,7 @@ exports.handler = async (event) => {
     };
   } else {
     // 返回 common/wrong.html 页面
-    const wrongPagePath = path.join(__dirname, 'common', 'wrong.html');
-    const wrongPageContent = fs.readFileSync(wrongPagePath, 'utf-8');
+    const wrongPageContent = `<html><body><h1>Wrong Page</h1></body></html>`;
 
     return {
       statusCode: 200,
