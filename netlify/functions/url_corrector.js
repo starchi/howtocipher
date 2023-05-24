@@ -9,16 +9,11 @@ exports.handler = async (event) => {
     };
   }
 
-  const correctedUrl = url.replace(/\/(\d+)\.html$/, '/A$1.html');
-  
-  // 如果已经包含了'A'前缀，直接返回原始URL
-  if (correctedUrl.includes('/A')) {
-    return {
-      statusCode: 302,
-      headers: {
-        Location: url,
-      },
-    };
+  let correctedUrl = url;
+
+  // 如果URL不包含'A'前缀，进行纠错处理
+  if (!url.includes('/A')) {
+    correctedUrl = url.replace(/\/(\d+)\.html$/, '/A$1.html');
   }
 
   return {
