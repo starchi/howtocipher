@@ -16,6 +16,9 @@ exports.handler = async (event) => {
     correctedUrl = url.replace(/\/(\d+)\.html$/, '/A$1.html');
   }
 
+  console.log('Original URL:', url);
+  console.log('Corrected URL:', correctedUrl);
+
   return {
     statusCode: 302,
     headers: {
