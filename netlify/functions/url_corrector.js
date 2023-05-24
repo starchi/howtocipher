@@ -1,16 +1,26 @@
+const fs = require('fs');
+const path = require('path');
 
 exports.handler = async function(event, context) {
   try {
     // 从 event.path 获取 URL 的路径
-    const path = event.path;
-    const fs = require('fs');
-    const fe=fs.existsSync('191.html');
-    
+    const urlPath = event.path;
 
-    // 对路径进行重定向逻辑处理
-    let redirectUrl = path;
-    if (path.includes('/beginner/')) {
-      redirectUrl = path.replace('/beginner/', '/beginner/A');
+    // 提取目录和文件名
+    const directory = path.dirname(urlPath);
+    const filename = path.basename(urlPath);
+
+    // 构建文件路径
+    const filePath = path.join(__dirname, 'public', directory, filename);
+
+    // 检查文件是否存在
+    const fileExists = fs.existsSync(filePath);
+
+    // 根据文件存在与否，进行重定向逻辑处理
+    let redirectUrl = urlPath;
+    if (!fileExists) {
+      const modifiedFilename = 'a' + filename;
+      redirectUrl = path.join(directory, modifiedFilename);
     }
 
     // 构建重定向响应
