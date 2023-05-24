@@ -13,14 +13,20 @@ exports.handler = async function(event, context) {
     // 构建文件路径
     const filePath = path.join(__dirname, 'public', directory, filename);
 
-    // 检查文件是否存在
+    // 判断文件是否存在
     const fileExists = fs.existsSync(filePath);
 
-    // 根据文件存在与否，进行重定向逻辑处理
+    // 根据文件存在与否进行重定向逻辑处理
     let redirectUrl = urlPath;
     if (!fileExists) {
       const modifiedFilename = 'a' + filename;
-      redirectUrl = path.join(directory, modifiedFilename);
+      const modifiedFilePath = path.join(__dirname, 'public', directory, modifiedFilename);
+      const modifiedFileExists = fs.existsSync(modifiedFilePath);
+      if (modifiedFileExists) {
+        redirectUrl = path.join(directory, modifiedFilename);
+      } else {
+        redirectUrl = '/common/wrong.html';
+      }
     }
 
     // 构建重定向响应
