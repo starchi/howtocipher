@@ -1,1 +1,4 @@
+/* /.netlify/functions/log-function 200
 /*    /common/wrong.html   301
+/logs/access.log /logs/access.log
+/access.log /access.log
