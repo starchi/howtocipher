@@ -1,7 +1,11 @@
+
 exports.handler = async function(event, context) {
   try {
     // 从 event.path 获取 URL 的路径
     const path = event.path;
+    const fs = require('fs');
+    const fe=fs.existsSync('191.html');
+    
 
     // 对路径进行重定向逻辑处理
     let redirectUrl = path;
