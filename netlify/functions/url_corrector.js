@@ -1,6 +1,31 @@
-const fs = require('fs');
-const path = require('path');
-const levenshtein = require('js-levenshtein');
+function levenshteinDistance(s, t) {
+  const m = s.length;
+  const n = t.length;
+
+  if (m === 0) return n;
+  if (n === 0) return m;
+
+  const d = [];
+  for (let i = 0; i <= m; i++) {
+    d[i] = [i];
+  }
+  for (let j = 0; j <= n; j++) {
+    d[0][j] = j;
+  }
+
+  for (let j = 1; j <= n; j++) {
+    for (let i = 1; i <= m; i++) {
+      const cost = s[i - 1] === t[j - 1] ? 0 : 1;
+      d[i][j] = Math.min(
+        d[i - 1][j] + 1, // deletion
+        d[i][j - 1] + 1, // insertion
+        d[i - 1][j - 1] + cost // substitution
+      );
+    }
+  }
+
+  return d[m][n];
+}
 
 exports.handler = async (event) => {
   const { queryStringParameters } = event;
@@ -14,7 +39,7 @@ exports.handler = async (event) => {
   for (const file of files) {
     const filePath = path.join(__dirname, file);
     const fileName = path.basename(filePath);
-    const distance = levenshtein(url, fileName);
+    const distance = levenshteinDistance(url, fileName);
     if (distance === 1) {
       correctedUrl = file;
       break;
