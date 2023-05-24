@@ -27,13 +27,16 @@ function levenshteinDistance(s, t) {
   return d[m][n];
 }
 
-
+const fs = require('fs');
 const path = require('path');
 
 exports.handler = async (event) => {
   const { queryStringParameters } = event;
   const { url } = queryStringParameters;
 
+  // 获取当前目录下的文件列表
+  const files = fs.readdirSync(__dirname);
+  
   // 寻找编辑距离为1的页面
   let correctedUrl = '';
   for (const file of files) {
