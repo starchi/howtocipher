@@ -10,6 +10,16 @@ exports.handler = async (event) => {
   }
 
   const correctedUrl = url.replace(/\/(\d+)\.html$/, '/A$1.html');
+  
+  // 如果已经包含了'A'前缀，直接返回原始URL
+  if (correctedUrl.includes('/A')) {
+    return {
+      statusCode: 302,
+      headers: {
+        Location: url,
+      },
+    };
+  }
 
   return {
     statusCode: 302,
